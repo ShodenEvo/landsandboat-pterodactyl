@@ -109,13 +109,13 @@
       "field_type": "text"
     },
     {
-      "name": "Public Server IP",
-      "description": "Public Server IP",
+      "name": "Public Server Address",
+      "description": "Public IPv4 address or DNS hostname advertised to game clients. Hostnames are resolved to IPv4 at startup.",
       "env_variable": "PUBLIC_SERVER_IP",
       "default_value": "127.0.0.1",
       "user_viewable": true,
       "user_editable": true,
-      "rules": "required|ip",
+      "rules": "required|string|max:253",
       "field_type": "text"
     },
     {
