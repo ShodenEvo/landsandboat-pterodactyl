@@ -29,6 +29,6 @@ This package contains no FFXI client files. Players need a compatible official c
 
 ## Dynamic DNS / hostname support
 
-`PUBLIC_SERVER_IP` accepts either a literal IPv4 address or a hostname such as `eits.myds.me`. At startup, the hostname is resolved to IPv4 and that numeric address is written to `zone_settings`, which is the address sent to clients after character selection.
+`PUBLIC_SERVER_IP` accepts either a literal IPv4 address or a hostname such as `yourhostname.ddns.net`. At startup, the hostname is resolved to IPv4 and that numeric address is written to `zone_settings`, which is the address sent to clients after character selection.
 
 If the hostname cannot be resolved, startup stops with a clear error instead of advertising an invalid zone address.
