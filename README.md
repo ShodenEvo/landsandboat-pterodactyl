@@ -25,3 +25,26 @@ Then start normally. The startup script updates `network.lua`, `login.lua`, and 
 `VER_LOCK`: 0=any client, 1=exact, 2=equal/newer.
 
 This package contains no FFXI client files. Players need a compatible official client and current xiloader. Back up the database before updates.
+
+## Upstream Project
+
+This project provides deployment tooling for
+[LandSandBoat](https://github.com/LandSandBoat/server), an open-source
+FINAL FANTASY XI server emulator.
+
+LandSandBoat is developed and maintained by the LandSandBoat contributors.
+This repository is not affiliated with, endorsed by, or maintained by the
+LandSandBoat project, Square Enix, or Pterodactyl.
+
+This repository does not redistribute LandSandBoat source code or FINAL
+FANTASY XI client files. The deployment scripts clone and build LandSandBoat
+from its official GitHub repository during installation.
+
+## License
+
+The deployment scripts and Pterodactyl configuration in this repository are
+licensed under the MIT License. See [LICENSE](LICENSE).
+
+LandSandBoat is a separate upstream project and remains subject to its own
+license and copyright notices.
+
