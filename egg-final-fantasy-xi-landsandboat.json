@@ -1,0 +1,192 @@
+{
+  "_comment": "Generated Pterodactyl Egg",
+  "meta": {
+    "version": "PTDL_v2",
+    "update_url": null
+  },
+  "exported_at": "2026-07-28T00:00:00+00:00",
+  "name": "Final Fantasy XI - LandSandBoat",
+  "author": "local-admin@example.invalid",
+  "description": "Reusable LandSandBoat server Egg.",
+  "features": null,
+  "docker_images": {
+    "Local LandSandBoat": "landsandboat-pterodactyl:latest"
+  },
+  "file_denylist": [],
+  "startup": "/bin/bash /home/container/pterodactyl/start.sh",
+  "config": {
+    "files": "{}",
+    "startup": "{\"done\":[\"The map-server is ready to work\",\"map-server is ready\"]}",
+    "logs": "{}",
+    "stop": "^C"
+  },
+  "scripts": {
+    "installation": {
+      "script": "/bin/bash /opt/lsb-bundle/install.sh",
+      "container": "landsandboat-pterodactyl:latest",
+      "entrypoint": "bash"
+    }
+  },
+  "variables": [
+    {
+      "name": "Repository URL",
+      "description": "Repository URL",
+      "env_variable": "LSB_REPO_URL",
+      "default_value": "https://github.com/LandSandBoat/server.git",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|max:255",
+      "field_type": "text"
+    },
+    {
+      "name": "Repository Ref",
+      "description": "Repository Ref",
+      "env_variable": "LSB_REPO_REF",
+      "default_value": "base",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|max:100",
+      "field_type": "text"
+    },
+    {
+      "name": "Build Jobs",
+      "description": "Build Jobs",
+      "env_variable": "BUILD_JOBS",
+      "default_value": "2",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer|min:1|max:16",
+      "field_type": "text"
+    },
+    {
+      "name": "Database Host",
+      "description": "Database Host",
+      "env_variable": "DB_HOST",
+      "default_value": "pterodactyl-database",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|max:255",
+      "field_type": "text"
+    },
+    {
+      "name": "Database Port",
+      "description": "Database Port",
+      "env_variable": "DB_PORT",
+      "default_value": "3306",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer|min:1|max:65535",
+      "field_type": "text"
+    },
+    {
+      "name": "Database Name",
+      "description": "Database Name",
+      "env_variable": "DB_NAME",
+      "default_value": "xidb",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|max:64",
+      "field_type": "text"
+    },
+    {
+      "name": "Database User",
+      "description": "Database User",
+      "env_variable": "DB_USER",
+      "default_value": "landsandboat",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|max:64",
+      "field_type": "text"
+    },
+    {
+      "name": "Database Password",
+      "description": "Database Password",
+      "env_variable": "DB_PASSWORD",
+      "default_value": "change-me",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|max:255",
+      "field_type": "text"
+    },
+    {
+      "name": "Public Server IP",
+      "description": "Public Server IP",
+      "env_variable": "PUBLIC_SERVER_IP",
+      "default_value": "127.0.0.1",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|ip",
+      "field_type": "text"
+    },
+    {
+      "name": "Client Version Lock",
+      "description": "Client Version Lock",
+      "env_variable": "VER_LOCK",
+      "default_value": "2",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer|in:0,1,2",
+      "field_type": "text"
+    },
+    {
+      "name": "Login Data Port",
+      "description": "Login Data Port",
+      "env_variable": "LOGIN_DATA_PORT",
+      "default_value": "54230",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer|min:1|max:65535",
+      "field_type": "text"
+    },
+    {
+      "name": "Login View Port",
+      "description": "Login View Port",
+      "env_variable": "LOGIN_VIEW_PORT",
+      "default_value": "54001",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer|min:1|max:65535",
+      "field_type": "text"
+    },
+    {
+      "name": "Login Auth Port",
+      "description": "Login Auth Port",
+      "env_variable": "LOGIN_AUTH_PORT",
+      "default_value": "54231",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer|min:1|max:65535",
+      "field_type": "text"
+    },
+    {
+      "name": "Login Config Port",
+      "description": "Login Config Port",
+      "env_variable": "LOGIN_CONF_PORT",
+      "default_value": "51220",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer|min:1|max:65535",
+      "field_type": "text"
+    },
+    {
+      "name": "Map Port",
+      "description": "Map Port",
+      "env_variable": "MAP_PORT",
+      "default_value": "54230",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer|min:1|max:65535",
+      "field_type": "text"
+    },
+    {
+      "name": "Search Port",
+      "description": "Search Port",
+      "env_variable": "SEARCH_PORT",
+      "default_value": "54002",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer|min:1|max:65535",
+      "field_type": "text"
+    }
+  ]
+}
