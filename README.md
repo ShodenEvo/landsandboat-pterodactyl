@@ -49,3 +49,11 @@ time the server starts.
 Because Startup values overwrite the matching Lua values at each launch, edit
 these settings from Pterodactyl rather than directly editing `map.lua`.
 
+
+
+### Startup script correction
+
+This package contains corrected Python regular expressions for `VER_LOCK` and
+all `settings/map.lua` variables. It fixes startup errors such as
+`Could not update VER_LOCK` and `Could not update LIGHTLUGGAGE_BLOCK`.
+

@@ -24,7 +24,7 @@ for k,x in iv.items():
     t=sub(t,rf"^\s*{k}\s*=\s*\d+\s*,",f"    {k:<16} = {x},",k)
 p.write_text(t)
 p=Path("settings/login.lua"); t=p.read_text()
-p.write_text(sub(t,r"^\\s*VER_LOCK\\s*=\\s*\\d+\\s*,",f"    VER_LOCK = {v},","VER_LOCK"))
+p.write_text(sub(t,r"^\s*VER_LOCK\s*=\s*\d+\s*,",f"    VER_LOCK = {v},","VER_LOCK"))
 
 # Gameplay mechanics exposed through the Pterodactyl Startup menu.
 map_types = {"LIGHTLUGGAGE_BLOCK":"int","LEAK_EXT_DATA_ON_ITEM_MOVE":"bool","ENABLE_ITEM_RECYCLE_BIN":"bool","SELF_UNSTUCK_ENABLED":"bool","SELF_UNSTUCK_COOLDOWN":"int","AH_BASE_FEE_SINGLE":"int","AH_BASE_FEE_STACKS":"int","AH_TAX_RATE_SINGLE":"float","AH_TAX_RATE_STACKS":"float","AH_MAX_FEE":"int","AH_LIST_LIMIT":"int","ENMITY_CAP":"int","EXP_RATE":"float","EXP_LOSS_RATE":"float","EXP_PARTY_GAP_PENALTIES":"bool","EXP_PARTY_GAP_NO_EXP":"int","CAPACITY_RATE":"float","FAME_MULTIPLIER":"float","EXP_RETAIN":"int","EXP_LOSS_LEVEL":"int","USE_PRE_ABYSSEA_EXP_LOSS_TIERS":"bool","MINIMUM_LEVEL_CONQUEST_INFUENCE_LOSS":"int","LEVEL_SYNC_ENABLE":"bool","DISABLE_GEAR_SCALING":"bool","DISABLE_TREASURE_HUNTER_PROCS":"bool","ENABLE_AUTO_ATTACK_LUA":"bool","WS_POINTS_BASE":"int","WS_POINTS_SKILLCHAIN":"int","ALL_JOBS_WIDESCAN":"bool","BASE_SPEED":"int","SPEED_LIMIT":"int","MOUNT_SPEED":"int","ANIMATION_SPEED_DIVISOR":"float","MOB_RUN_SPEED_MULTIPLIER":"float","SKILLUP_CHANCE_MULTIPLIER":"float","CRAFT_CHANCE_MULTIPLIER":"float","SKILLUP_AMOUNT_MULTIPLIER":"int","CRAFT_AMOUNT_MULTIPLIER":"int","GARDEN_DAY_MATTERS":"bool","GARDEN_MOONPHASE_MATTERS":"bool","GARDEN_POT_MATTERS":"bool","GARDEN_MH_AURA_MATTERS":"bool","CRAFT_MODERN_SYSTEM":"bool","CRAFT_COMMON_CAP":"int","CRAFT_SPECIALIZATION_POINTS":"int","CRAFT_HQ_CHANCE_MULTIPLIER":"float","FISHING_ENABLE":"bool","FISHING_MIN_LEVEL":"int","FISHING_SKILL_MULTIPLIER":"float","SKILLUP_BLOODPACT":"bool","MOB_TP_MULTIPLIER":"float","PET_TP_MULTIPLIER":"float","PLAYER_TP_MULTIPLIER":"float","TRUST_TP_MULTIPLIER":"float","FELLOW_TP_MULTIPLIER":"float","NM_HP_MULTIPLIER":"float","MOB_HP_MULTIPLIER":"float","ALTER_EGO_HP_MULTIPLIER":"float","NM_MP_MULTIPLIER":"float","MOB_MP_MULTIPLIER":"float","ALTER_EGO_MP_MULTIPLIER":"float","SJ_MP_DIVISOR":"float","SUBJOB_RATIO":"int","INCLUDE_MOB_SJ":"bool","NM_STAT_MULTIPLIER":"float","MOB_STAT_MULTIPLIER":"float","ALTER_EGO_STAT_MULTIPLIER":"float","ALTER_EGO_SKILL_MULTIPLIER":"float","ABILITY_RECAST_MULTIPLIER":"float","SPELL_RECAST_REDUCTION_CAP":"int","BLOOD_PACT_SHARED_TIMER":"bool","DROP_RATE_MULTIPLIER":"float","MOB_GIL_MULTIPLIER":"float","ALL_MOBS_GIL_BONUS":"int","MAX_GIL_BONUS":"int","MOB_NO_DESPAWN":"bool","MOB_ADDITIONAL_TIME_TO_DEAGGRO":"int","DEFENSIVE_OLD_SKILLUP_STYLE":"bool","BATTLE_CAP_TWEAK":"int","LV_CAP_MISSION_BCNM":"bool","BCNM_ENABLE_EXPERIMENTAL":"bool","MAX_MERIT_POINTS":"int","YELL_COOLDOWN":"int","BLOCK_TELL_TO_HIDDEN_GM":"bool","PREVENT_UNENGAGED_WS":"bool","HIDE_READIES_TARGET":"bool","AUDIT_GM_CMD":"bool","AUDIT_CHAT":"bool","AUDIT_SAY":"bool","AUDIT_SHOUT":"bool","AUDIT_TELL":"bool","AUDIT_YELL":"bool","AUDIT_LINKSHELL":"bool","AUDIT_UNITY":"bool","AUDIT_PARTY":"bool","AUDIT_BALLISTA":"bool","AUDIT_ASSISTE":"bool","AUDIT_ASSISTJ":"bool","AUDIT_PLAYER_TRADES":"bool","AUDIT_PLAYER_BAZAAR":"bool","AUDIT_PLAYER_DBOX":"bool","AUDIT_PLAYER_VENDOR":"bool","DELIVERY_BOX_MAX_INFLIGHT":"int","HEALING_TICK_DELAY":"int","KEEP_JUGPET_THROUGH_ZONING":"bool","DESPAWN_JUGPETS_BELOW_MINIMUM_LEVEL":"bool","REPORT_LUA_ERRORS_TO_PLAYER_LEVEL":"int"}
@@ -37,15 +37,16 @@ for key, value_type in map_types.items():
         if lowered not in ("true", "false"):
             raise RuntimeError(f"{key} must be true or false")
         rendered = lowered
-        pattern = rf"^\\s*{key}\\s*=\\s*(?:true|false)\\s*,"
+        pattern = rf"^\s*{key}\s*=\s*(?:true|false)\s*,"
     elif value_type == "int":
         rendered = str(int(raw))
-        pattern = rf"^\\s*{key}\\s*=\\s*-?\\d+\\s*,"
+        pattern = rf"^\s*{key}\s*=\s*-?\d+\s*,"
     else:
         rendered = str(float(raw))
-        pattern = rf"^\\s*{key}\\s*=\\s*-?\\d+(?:\\.\\d+)?\\s*,"
+        pattern = rf"^\s*{key}\s*=\s*-?\d+(?:\.\d+)?\s*,"
     t = sub(t, pattern, f"    {key} = {rendered},", key)
 p.write_text(t)
+print(f"Applied {len(map_types)} gameplay settings to settings/map.lua")
 PY
 .venv/bin/python3 - <<'PYDB'
 import os,socket,mariadb
