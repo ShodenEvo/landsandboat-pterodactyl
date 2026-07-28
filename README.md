@@ -29,6 +29,23 @@ This package contains no FFXI client files. Players need a compatible official c
 
 ## Dynamic DNS / hostname support
 
-`PUBLIC_SERVER_IP` accepts either a literal IPv4 address or a hostname such as `yourhostname.ddns.net`. At startup, the hostname is resolved to IPv4 and that numeric address is written to `zone_settings`, which is the address sent to clients after character selection.
+`PUBLIC_SERVER_IP` accepts either a literal IPv4 address or a hostname such as `eits.myds.me`. At startup, the hostname is resolved to IPv4 and that numeric address is written to `zone_settings`, which is the address sent to clients after character selection.
 
 If the hostname cannot be resolved, startup stops with a clear error instead of advertising an invalid zone address.
+
+
+## Gameplay settings in Pterodactyl Startup
+
+This release exposes **107 gameplay settings** from `settings/map.lua`
+as editable Pterodactyl Startup variables. They include experience and capacity
+rates, skill-up and crafting rates, movement speed, TP/HP/MP/stat multipliers,
+drop and gil rates, auction-house behavior, fishing, level sync, subjob ratio,
+battlefield rules, audit options, and other server mechanics.
+
+Boolean values must be entered as lowercase `true` or `false`. Numeric values
+are validated by the startup script and written to `settings/map.lua` every
+time the server starts.
+
+Because Startup values overwrite the matching Lua values at each launch, edit
+these settings from Pterodactyl rather than directly editing `map.lua`.
+

@@ -1,0 +1,111 @@
+# Exposed map.lua Startup variables
+
+Total: 107
+
+- `LIGHTLUGGAGE_BLOCK` (int, default `4`): Game settings Minimal number of 0x3A packets which uses for detect lightluggage (set 0 for disable)
+- `LEAK_EXT_DATA_ON_ITEM_MOVE` (bool, default `true`): Enable or disable leaking item extdata to client when moving items out of an inventory container into another one Retail leaks extdata on move, which is useful for edge cases such as weapon skill points
+- `ENABLE_ITEM_RECYCLE_BIN` (bool, default `true`): Enable or disable Recycle Bin (Set to false for items to be dropped immediately)
+- `SELF_UNSTUCK_ENABLED` (bool, default `false`): Self-unstuck feature (sends player to homepoint via Help Desk command)
+- `SELF_UNSTUCK_COOLDOWN` (int, default `86400`): LandSandBoat map.lua setting: SELF_UNSTUCK_COOLDOWN
+- `AH_BASE_FEE_SINGLE` (int, default `1`): AH fee structure, defaults are retail.
+- `AH_BASE_FEE_STACKS` (int, default `4`): LandSandBoat map.lua setting: AH_BASE_FEE_STACKS
+- `AH_TAX_RATE_SINGLE` (float, default `1.0`): LandSandBoat map.lua setting: AH_TAX_RATE_SINGLE
+- `AH_TAX_RATE_STACKS` (float, default `0.5`): LandSandBoat map.lua setting: AH_TAX_RATE_STACKS
+- `AH_MAX_FEE` (int, default `10000`): LandSandBoat map.lua setting: AH_MAX_FEE
+- `AH_LIST_LIMIT` (int, default `7`): Max open listings per player, 0 = no limit. (Default 7) Note = Settings over 7 may need client-side plugin to work under all circumstances. If this is the case, consider using the ah_pagination module (which supports setting AH_LIST_LIMI...
+- `ENMITY_CAP` (int, default `30000`): The total enmity cap for a given entity on the enmity table. 30,000 is believed to be approximately current retail cap. This directly affects a tank's ability to hold enmity over time. The lower the value, the faster damage dealers will ...
+- `EXP_RATE` (float, default `1.0`): Misc EXP related settings
+- `EXP_LOSS_RATE` (float, default `1.0`): LandSandBoat map.lua setting: EXP_LOSS_RATE
+- `EXP_PARTY_GAP_PENALTIES` (bool, default `true`): LandSandBoat map.lua setting: EXP_PARTY_GAP_PENALTIES
+- `EXP_PARTY_GAP_NO_EXP` (int, default `0`): A party member's experience points are nullified if the level difference with the highest-level party member exceeds this value. When set to 0, there is no nullification of EXP regardless of how wide the gap is between party members. Whe...
+- `CAPACITY_RATE` (float, default `1.0`): Capacity Point Settings
+- `FAME_MULTIPLIER` (float, default `1.00`): For old fame calculation use .25
+- `EXP_RETAIN` (int, default `0`): Percentage of experience normally lost to keep upon death. 0 means full loss, where 1 means no loss.
+- `EXP_LOSS_LEVEL` (int, default `31`): Minimum level at which experience points can be lost
+- `USE_PRE_ABYSSEA_EXP_LOSS_TIERS` (bool, default `false`): Enable/Disable pre-Abyssea experience point loss tiers. set true with EXP_LOSS_LEVEL = 4, for pre-Abyssea experience point loss behavior. https://wiki.ffo.jp/html/15196.html
+- `MINIMUM_LEVEL_CONQUEST_INFUENCE_LOSS` (int, default `6`): Minimum level at which regional influence is lost in conquest when a player dies Level 5 and below don't lose influence: http://wiki.ffo.jp/html/498.html
+- `LEVEL_SYNC_ENABLE` (bool, default `true`): Enable/disable Level Sync
+- `DISABLE_GEAR_SCALING` (bool, default `false`): Disables ability to equip higher level gear when level cap/sync effect is on player.
+- `DISABLE_TREASURE_HUNTER_PROCS` (bool, default `false`): Disables Treasure Hunter procs (Era behavior wants this true)
+- `ENABLE_AUTO_ATTACK_LUA` (bool, default `false`): Enable auto attack damage calculations in Lua
+- `WS_POINTS_BASE` (int, default `5`): Weaponskill point base (before skillchain) for breaking latent - whole numbers only. retail is 5.
+- `WS_POINTS_SKILLCHAIN` (int, default `2`): Weaponskill points per skillchain level - whole numbers only, retail is 2
+- `ALL_JOBS_WIDESCAN` (bool, default `true`): Enable/disable jobs other than BST and RNG having widescan
+- `BASE_SPEED` (int, default `50`): Base player movement speed
+- `SPEED_LIMIT` (int, default `80`): Player movement speed limit
+- `MOUNT_SPEED` (int, default `80`): Mount speed, expressed as player speed. Can surpass speed limit.
+- `ANIMATION_SPEED_DIVISOR` (float, default `1.0`): Player animation speed divisor Raising this increases the players movement animation speed
+- `MOB_RUN_SPEED_MULTIPLIER` (float, default `2.5`): Multiplier for speed of engaged mobs when their target is out of range. The default for almost all mobs on retail is 2.5x their normal speed.
+- `SKILLUP_CHANCE_MULTIPLIER` (float, default `1.0`): Allows you to manipulate the constant multiplier in the skill-up rate formulas, having a potent effect on skill-up rates.
+- `CRAFT_CHANCE_MULTIPLIER` (float, default `1.0`): LandSandBoat map.lua setting: CRAFT_CHANCE_MULTIPLIER
+- `SKILLUP_AMOUNT_MULTIPLIER` (int, default `1`): Multiplier for skillup amounts. Using anything above 1 will break the 0.5 cap, the cap will become 0.9 (For maximum, set to 5)
+- `CRAFT_AMOUNT_MULTIPLIER` (int, default `1`): LandSandBoat map.lua setting: CRAFT_AMOUNT_MULTIPLIER
+- `GARDEN_DAY_MATTERS` (bool, default `false`): Gardening Factors. DO NOT change defaults without verifiable proof that your change IS how retail does it. Myths need to be optional.
+- `GARDEN_MOONPHASE_MATTERS` (bool, default `false`): LandSandBoat map.lua setting: GARDEN_MOONPHASE_MATTERS
+- `GARDEN_POT_MATTERS` (bool, default `false`): LandSandBoat map.lua setting: GARDEN_POT_MATTERS
+- `GARDEN_MH_AURA_MATTERS` (bool, default `false`): LandSandBoat map.lua setting: GARDEN_MH_AURA_MATTERS
+- `CRAFT_MODERN_SYSTEM` (bool, default `true`): Use current retail skill up rates and margins (Retail = High Skill-Up rate; Skill-Up when at or under 10 levels above synth recipe level.)
+- `CRAFT_COMMON_CAP` (int, default `700`): Craft level limit from witch specialization points beginning to count. (Retail = 700; Level 75 era:600)
+- `CRAFT_SPECIALIZATION_POINTS` (int, default `400`): Amount of points allowed in crafts over the level defined above. Points are shared across all crafting skills. (Retail = 400; All skills can go to max = 3200)
+- `CRAFT_HQ_CHANCE_MULTIPLIER` (float, default `1.0`): Multiplier applied to high quality chance
+- `FISHING_ENABLE` (bool, default `false`): Enable/disable all fishing, including quests. ENABLE AT YOUR OWN RISK.
+- `FISHING_MIN_LEVEL` (int, default `1`): Sets the minimum level a character must be to fish.
+- `FISHING_SKILL_MULTIPLIER` (float, default `1.0`): Multiplier for fishing skill-up chance. Default = 1.0, very hard.
+- `SKILLUP_BLOODPACT` (bool, default `true`): Enable/disable skill-ups from bloodpacts
+- `MOB_TP_MULTIPLIER` (float, default `1.0`): Adjust rate of TP gain for mobs, pets (includes charmed pets), fellows, trusts and players. Acts as a multiplier, so default is 1.
+- `PET_TP_MULTIPLIER` (float, default `1.0`): LandSandBoat map.lua setting: PET_TP_MULTIPLIER
+- `PLAYER_TP_MULTIPLIER` (float, default `1.0`): LandSandBoat map.lua setting: PLAYER_TP_MULTIPLIER
+- `TRUST_TP_MULTIPLIER` (float, default `1.0`): LandSandBoat map.lua setting: TRUST_TP_MULTIPLIER
+- `FELLOW_TP_MULTIPLIER` (float, default `1.0`): LandSandBoat map.lua setting: FELLOW_TP_MULTIPLIER
+- `NM_HP_MULTIPLIER` (float, default `1.0`): Adjust max HP pool for NMs, regular mobs, players, and trusts/fellows. Acts as a multiplier, so default is 1. Valid range: 0.1 to 2.0
+- `MOB_HP_MULTIPLIER` (float, default `1.0`): LandSandBoat map.lua setting: MOB_HP_MULTIPLIER
+- `ALTER_EGO_HP_MULTIPLIER` (float, default `1.0`): LandSandBoat map.lua setting: ALTER_EGO_HP_MULTIPLIER
+- `NM_MP_MULTIPLIER` (float, default `1.0`): Adjust max MP pool for NMs, regular mobs, players, and trusts/fellows. Acts as a multiplier, so default is 1. Valid range: 0.1 to 2.0
+- `MOB_MP_MULTIPLIER` (float, default `1.0`): LandSandBoat map.lua setting: MOB_MP_MULTIPLIER
+- `ALTER_EGO_MP_MULTIPLIER` (float, default `1.0`): LandSandBoat map.lua setting: ALTER_EGO_MP_MULTIPLIER
+- `SJ_MP_DIVISOR` (float, default `2.0`): Sets the fraction of MP a subjob provides to the main job. Retail is half and this acts as a divisor so default is 2
+- `SUBJOB_RATIO` (int, default `1`): 0 = no subjobs 1 = 1/2 (default, 75/37, 99/49) 2 = 2/3 (75/50, 99/66) 3 = equal (75/75, 99/99)
+- `INCLUDE_MOB_SJ` (bool, default `false`): Also adjust monsters subjob in ratio adjustments? 1 = true / 0 = false
+- `NM_STAT_MULTIPLIER` (float, default `1.0`): Adjust base stats (str/vit/etc.) for NMs, regular mobs, players, and trusts/fellows. Acts as a multiplier, so default is 1.0. Valid range: 0.1 to 2.0
+- `MOB_STAT_MULTIPLIER` (float, default `1.0`): LandSandBoat map.lua setting: MOB_STAT_MULTIPLIER
+- `ALTER_EGO_STAT_MULTIPLIER` (float, default `1.0`): LandSandBoat map.lua setting: ALTER_EGO_STAT_MULTIPLIER
+- `ALTER_EGO_SKILL_MULTIPLIER` (float, default `1.0`): Adjust skill caps for trusts/fellows. Acts as a multiplier, so default is 1.
+- `ABILITY_RECAST_MULTIPLIER` (float, default `1.0`): Adjust the recast time for abilities. Acts as a multiplier, so default is 1
+- `SPELL_RECAST_REDUCTION_CAP` (int, default `80`): Maximum spell recast reduction percentage. Current retail is 80. Older eras used 50.
+- `BLOOD_PACT_SHARED_TIMER` (bool, default `false`): Enable/disable shared blood pact timer
+- `DROP_RATE_MULTIPLIER` (float, default `1.0`): Adjust mob drop rate. Acts as a multiplier, so default is 1.
+- `MOB_GIL_MULTIPLIER` (float, default `1.0`): Multiplier for gil naturally dropped by mobs. Does not apply to the bonus gil from all_mobs_gil_bonus. Default is 1.0.
+- `ALL_MOBS_GIL_BONUS` (int, default `0`): All mobs drop this much extra gil per mob LV even if they normally drop zero.
+- `MAX_GIL_BONUS` (int, default `9999`): Maximum total bonus gil that can be dropped. Default 9999 gil.
+- `MOB_NO_DESPAWN` (bool, default `false`): Allow mobs to walk back home instead of despawning
+- `MOB_ADDITIONAL_TIME_TO_DEAGGRO` (int, default `0`): Adds extra time to mob despawn in seconds. Base time is 25s, so a setting of 5 here would be a total of 30 seconds.
+- `DEFENSIVE_OLD_SKILLUP_STYLE` (bool, default `false`): Allows parry, block, and guard to skill up regardless of the action occuring. This did not happen in previous eras
+- `BATTLE_CAP_TWEAK` (int, default `0`): Globally adjusts ALL battlefield level caps by this many levels.
+- `LV_CAP_MISSION_BCNM` (bool, default `false`): Enable/disable level cap of mission battlefields stored in database.
+- `BCNM_ENABLE_EXPERIMENTAL` (bool, default `true`): Allow players to enter BCNMs which are flagged as experimental
+- `MAX_MERIT_POINTS` (int, default `30`): Max allowed merits points players can hold 10 classic 30 abyssea
+- `YELL_COOLDOWN` (int, default `30`): Minimum time between uses of yell command (in seconds).
+- `BLOCK_TELL_TO_HIDDEN_GM` (bool, default `false`): Prevent players from sending tells to hidden GMs. You will still receive them from other GMs.
+- `PREVENT_UNENGAGED_WS` (bool, default `false`): Prevent players from performing WS while unengaged using packet injection.
+- `HIDE_READIES_TARGET` (bool, default `false`): Don't leak the target of non PCs readying items/casting spells/using mobskills. Essentially, server side kills the info the targetlines addon uses. This will also make battlemod/simplelog show self target on spells
+- `AUDIT_GM_CMD` (bool, default `false`): Command Audit [logging] commands with lower permission than this will not be logged. Zero for no logging at all. Commands given to non GMs are not logged.
+- `AUDIT_CHAT` (bool, default `false`): Todo = other logging including anti-cheat messages Chat Audit[logging] settings
+- `AUDIT_SAY` (bool, default `false`): LandSandBoat map.lua setting: AUDIT_SAY
+- `AUDIT_SHOUT` (bool, default `false`): LandSandBoat map.lua setting: AUDIT_SHOUT
+- `AUDIT_TELL` (bool, default `false`): LandSandBoat map.lua setting: AUDIT_TELL
+- `AUDIT_YELL` (bool, default `false`): LandSandBoat map.lua setting: AUDIT_YELL
+- `AUDIT_LINKSHELL` (bool, default `false`): LandSandBoat map.lua setting: AUDIT_LINKSHELL
+- `AUDIT_UNITY` (bool, default `false`): LandSandBoat map.lua setting: AUDIT_UNITY
+- `AUDIT_PARTY` (bool, default `false`): LandSandBoat map.lua setting: AUDIT_PARTY
+- `AUDIT_BALLISTA` (bool, default `false`): LandSandBoat map.lua setting: AUDIT_BALLISTA
+- `AUDIT_ASSISTE` (bool, default `false`): LandSandBoat map.lua setting: AUDIT_ASSISTE
+- `AUDIT_ASSISTJ` (bool, default `false`): LandSandBoat map.lua setting: AUDIT_ASSISTJ
+- `AUDIT_PLAYER_TRADES` (bool, default `false`): Player Item Transaction Logging (Default: Off) Logs player item transactions to the database for persistence.
+- `AUDIT_PLAYER_BAZAAR` (bool, default `false`): LandSandBoat map.lua setting: AUDIT_PLAYER_BAZAAR
+- `AUDIT_PLAYER_DBOX` (bool, default `false`): LandSandBoat map.lua setting: AUDIT_PLAYER_DBOX
+- `AUDIT_PLAYER_VENDOR` (bool, default `false`): LandSandBoat map.lua setting: AUDIT_PLAYER_VENDOR
+- `DELIVERY_BOX_MAX_INFLIGHT` (int, default `128`): Maximum number of in-flight items (slots) allowed in a player's delivery box for PC-to-PC transfers.
+- `HEALING_TICK_DELAY` (int, default `10`): Seconds between healing ticks. Default is 10
+- `KEEP_JUGPET_THROUGH_ZONING` (bool, default `false`): Enable/disable keeping jug pets through zoning
+- `DESPAWN_JUGPETS_BELOW_MINIMUM_LEVEL` (bool, default `false`): Despawn jug pets that have a minimum level below level sync or zone level restriction. Such as despawning Courier Carrie in a level 20 cap when their minimum level to summon is 23. While the default value of false is retail accurate, the...
+- `REPORT_LUA_ERRORS_TO_PLAYER_LEVEL` (int, default `6`): Send stack traces to the client after caught Lua errors if their GM level is the same or higher than this number. The max GM level is 5, so setting this to 6 disables it for everone. Setting it to 0 enables for everyone.

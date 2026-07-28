@@ -7,7 +7,7 @@
   "exported_at": "2026-07-28T00:00:00+00:00",
   "name": "Final Fantasy XI - LandSandBoat",
   "author": "local-admin@example.invalid",
-  "description": "Reusable LandSandBoat server Egg.",
+  "description": "LandSandBoat FFXI server with database, public hostname/IP, client version lock, network ports, and gameplay mechanics from settings/map.lua exposed in Pterodactyl Startup.",
   "features": null,
   "docker_images": {
     "Local LandSandBoat": "landsandboat-pterodactyl:latest"
@@ -186,6 +186,1076 @@
       "user_viewable": true,
       "user_editable": true,
       "rules": "required|integer|min:1|max:65535",
+      "field_type": "text"
+    },
+    {
+      "name": "Lightluggage Block",
+      "description": "Game settings Minimal number of 0x3A packets which uses for detect lightluggage (set 0 for disable)",
+      "env_variable": "LIGHTLUGGAGE_BLOCK",
+      "default_value": "4",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "Leak Ext Data On Item Move",
+      "description": "Enable or disable leaking item extdata to client when moving items out of an inventory container into another one Retail leaks extdata on move, which is useful for edge cases such as weapon skill points",
+      "env_variable": "LEAK_EXT_DATA_ON_ITEM_MOVE",
+      "default_value": "true",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Enable Item Recycle Bin",
+      "description": "Enable or disable Recycle Bin (Set to false for items to be dropped immediately)",
+      "env_variable": "ENABLE_ITEM_RECYCLE_BIN",
+      "default_value": "true",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Self Unstuck Enabled",
+      "description": "Self-unstuck feature (sends player to homepoint via Help Desk command)",
+      "env_variable": "SELF_UNSTUCK_ENABLED",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Self Unstuck Cooldown",
+      "description": "LandSandBoat map.lua setting: SELF_UNSTUCK_COOLDOWN",
+      "env_variable": "SELF_UNSTUCK_COOLDOWN",
+      "default_value": "86400",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "AH Base Fee Single",
+      "description": "AH fee structure, defaults are retail.",
+      "env_variable": "AH_BASE_FEE_SINGLE",
+      "default_value": "1",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "AH Base Fee Stacks",
+      "description": "LandSandBoat map.lua setting: AH_BASE_FEE_STACKS",
+      "env_variable": "AH_BASE_FEE_STACKS",
+      "default_value": "4",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "AH Tax Rate Single",
+      "description": "LandSandBoat map.lua setting: AH_TAX_RATE_SINGLE",
+      "env_variable": "AH_TAX_RATE_SINGLE",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "AH Tax Rate Stacks",
+      "description": "LandSandBoat map.lua setting: AH_TAX_RATE_STACKS",
+      "env_variable": "AH_TAX_RATE_STACKS",
+      "default_value": "0.5",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "AH Max Fee",
+      "description": "LandSandBoat map.lua setting: AH_MAX_FEE",
+      "env_variable": "AH_MAX_FEE",
+      "default_value": "10000",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "AH List Limit",
+      "description": "Max open listings per player, 0 = no limit. (Default 7) Note = Settings over 7 may need client-side plugin to work under all circumstances. If this is the case, consider using the ah_pagination module (which supports setting AH_LIST_LIMI...",
+      "env_variable": "AH_LIST_LIMIT",
+      "default_value": "7",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "Enmity Cap",
+      "description": "The total enmity cap for a given entity on the enmity table. 30,000 is believed to be approximately current retail cap. This directly affects a tank's ability to hold enmity over time. The lower the value, the faster damage dealers will ...",
+      "env_variable": "ENMITY_CAP",
+      "default_value": "30000",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "EXP Rate",
+      "description": "Misc EXP related settings",
+      "env_variable": "EXP_RATE",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "EXP Loss Rate",
+      "description": "LandSandBoat map.lua setting: EXP_LOSS_RATE",
+      "env_variable": "EXP_LOSS_RATE",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "EXP Party Gap Penalties",
+      "description": "LandSandBoat map.lua setting: EXP_PARTY_GAP_PENALTIES",
+      "env_variable": "EXP_PARTY_GAP_PENALTIES",
+      "default_value": "true",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "EXP Party Gap No EXP",
+      "description": "A party member's experience points are nullified if the level difference with the highest-level party member exceeds this value. When set to 0, there is no nullification of EXP regardless of how wide the gap is between party members. Whe...",
+      "env_variable": "EXP_PARTY_GAP_NO_EXP",
+      "default_value": "0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "Capacity Rate",
+      "description": "Capacity Point Settings",
+      "env_variable": "CAPACITY_RATE",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "Fame Multiplier",
+      "description": "For old fame calculation use .25",
+      "env_variable": "FAME_MULTIPLIER",
+      "default_value": "1.00",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "EXP Retain",
+      "description": "Percentage of experience normally lost to keep upon death. 0 means full loss, where 1 means no loss.",
+      "env_variable": "EXP_RETAIN",
+      "default_value": "0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "EXP Loss Level",
+      "description": "Minimum level at which experience points can be lost",
+      "env_variable": "EXP_LOSS_LEVEL",
+      "default_value": "31",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "Use Pre Abyssea EXP Loss Tiers",
+      "description": "Enable/Disable pre-Abyssea experience point loss tiers. set true with EXP_LOSS_LEVEL = 4, for pre-Abyssea experience point loss behavior. https://wiki.ffo.jp/html/15196.html",
+      "env_variable": "USE_PRE_ABYSSEA_EXP_LOSS_TIERS",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Minimum Level Conquest Infuence Loss",
+      "description": "Minimum level at which regional influence is lost in conquest when a player dies Level 5 and below don't lose influence: http://wiki.ffo.jp/html/498.html",
+      "env_variable": "MINIMUM_LEVEL_CONQUEST_INFUENCE_LOSS",
+      "default_value": "6",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "Level Sync Enable",
+      "description": "Enable/disable Level Sync",
+      "env_variable": "LEVEL_SYNC_ENABLE",
+      "default_value": "true",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Disable Gear Scaling",
+      "description": "Disables ability to equip higher level gear when level cap/sync effect is on player.",
+      "env_variable": "DISABLE_GEAR_SCALING",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Disable Treasure Hunter Procs",
+      "description": "Disables Treasure Hunter procs (Era behavior wants this true)",
+      "env_variable": "DISABLE_TREASURE_HUNTER_PROCS",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Enable Auto Attack Lua",
+      "description": "Enable auto attack damage calculations in Lua",
+      "env_variable": "ENABLE_AUTO_ATTACK_LUA",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "WS Points Base",
+      "description": "Weaponskill point base (before skillchain) for breaking latent - whole numbers only. retail is 5.",
+      "env_variable": "WS_POINTS_BASE",
+      "default_value": "5",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "WS Points Skillchain",
+      "description": "Weaponskill points per skillchain level - whole numbers only, retail is 2",
+      "env_variable": "WS_POINTS_SKILLCHAIN",
+      "default_value": "2",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "All Jobs Widescan",
+      "description": "Enable/disable jobs other than BST and RNG having widescan",
+      "env_variable": "ALL_JOBS_WIDESCAN",
+      "default_value": "true",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Base Speed",
+      "description": "Base player movement speed",
+      "env_variable": "BASE_SPEED",
+      "default_value": "50",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "Speed Limit",
+      "description": "Player movement speed limit",
+      "env_variable": "SPEED_LIMIT",
+      "default_value": "80",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "Mount Speed",
+      "description": "Mount speed, expressed as player speed. Can surpass speed limit.",
+      "env_variable": "MOUNT_SPEED",
+      "default_value": "80",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "Animation Speed Divisor",
+      "description": "Player animation speed divisor Raising this increases the players movement animation speed",
+      "env_variable": "ANIMATION_SPEED_DIVISOR",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "MOB Run Speed Multiplier",
+      "description": "Multiplier for speed of engaged mobs when their target is out of range. The default for almost all mobs on retail is 2.5x their normal speed.",
+      "env_variable": "MOB_RUN_SPEED_MULTIPLIER",
+      "default_value": "2.5",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "Skillup Chance Multiplier",
+      "description": "Allows you to manipulate the constant multiplier in the skill-up rate formulas, having a potent effect on skill-up rates.",
+      "env_variable": "SKILLUP_CHANCE_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "Craft Chance Multiplier",
+      "description": "LandSandBoat map.lua setting: CRAFT_CHANCE_MULTIPLIER",
+      "env_variable": "CRAFT_CHANCE_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "Skillup Amount Multiplier",
+      "description": "Multiplier for skillup amounts. Using anything above 1 will break the 0.5 cap, the cap will become 0.9 (For maximum, set to 5)",
+      "env_variable": "SKILLUP_AMOUNT_MULTIPLIER",
+      "default_value": "1",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "Craft Amount Multiplier",
+      "description": "LandSandBoat map.lua setting: CRAFT_AMOUNT_MULTIPLIER",
+      "env_variable": "CRAFT_AMOUNT_MULTIPLIER",
+      "default_value": "1",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "Garden Day Matters",
+      "description": "Gardening Factors. DO NOT change defaults without verifiable proof that your change IS how retail does it. Myths need to be optional.",
+      "env_variable": "GARDEN_DAY_MATTERS",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Garden Moonphase Matters",
+      "description": "LandSandBoat map.lua setting: GARDEN_MOONPHASE_MATTERS",
+      "env_variable": "GARDEN_MOONPHASE_MATTERS",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Garden Pot Matters",
+      "description": "LandSandBoat map.lua setting: GARDEN_POT_MATTERS",
+      "env_variable": "GARDEN_POT_MATTERS",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Garden Mh Aura Matters",
+      "description": "LandSandBoat map.lua setting: GARDEN_MH_AURA_MATTERS",
+      "env_variable": "GARDEN_MH_AURA_MATTERS",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Craft Modern System",
+      "description": "Use current retail skill up rates and margins (Retail = High Skill-Up rate; Skill-Up when at or under 10 levels above synth recipe level.)",
+      "env_variable": "CRAFT_MODERN_SYSTEM",
+      "default_value": "true",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Craft Common Cap",
+      "description": "Craft level limit from witch specialization points beginning to count. (Retail = 700; Level 75 era:600)",
+      "env_variable": "CRAFT_COMMON_CAP",
+      "default_value": "700",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "Craft Specialization Points",
+      "description": "Amount of points allowed in crafts over the level defined above. Points are shared across all crafting skills. (Retail = 400; All skills can go to max = 3200)",
+      "env_variable": "CRAFT_SPECIALIZATION_POINTS",
+      "default_value": "400",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "Craft HQ Chance Multiplier",
+      "description": "Multiplier applied to high quality chance",
+      "env_variable": "CRAFT_HQ_CHANCE_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "Fishing Enable",
+      "description": "Enable/disable all fishing, including quests. ENABLE AT YOUR OWN RISK.",
+      "env_variable": "FISHING_ENABLE",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Fishing Min Level",
+      "description": "Sets the minimum level a character must be to fish.",
+      "env_variable": "FISHING_MIN_LEVEL",
+      "default_value": "1",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "Fishing Skill Multiplier",
+      "description": "Multiplier for fishing skill-up chance. Default = 1.0, very hard.",
+      "env_variable": "FISHING_SKILL_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "Skillup Bloodpact",
+      "description": "Enable/disable skill-ups from bloodpacts",
+      "env_variable": "SKILLUP_BLOODPACT",
+      "default_value": "true",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "MOB TP Multiplier",
+      "description": "Adjust rate of TP gain for mobs, pets (includes charmed pets), fellows, trusts and players. Acts as a multiplier, so default is 1.",
+      "env_variable": "MOB_TP_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "Pet TP Multiplier",
+      "description": "LandSandBoat map.lua setting: PET_TP_MULTIPLIER",
+      "env_variable": "PET_TP_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "Player TP Multiplier",
+      "description": "LandSandBoat map.lua setting: PLAYER_TP_MULTIPLIER",
+      "env_variable": "PLAYER_TP_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "Trust TP Multiplier",
+      "description": "LandSandBoat map.lua setting: TRUST_TP_MULTIPLIER",
+      "env_variable": "TRUST_TP_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "Fellow TP Multiplier",
+      "description": "LandSandBoat map.lua setting: FELLOW_TP_MULTIPLIER",
+      "env_variable": "FELLOW_TP_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "NM HP Multiplier",
+      "description": "Adjust max HP pool for NMs, regular mobs, players, and trusts/fellows. Acts as a multiplier, so default is 1. Valid range: 0.1 to 2.0",
+      "env_variable": "NM_HP_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "MOB HP Multiplier",
+      "description": "LandSandBoat map.lua setting: MOB_HP_MULTIPLIER",
+      "env_variable": "MOB_HP_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "Alter Ego HP Multiplier",
+      "description": "LandSandBoat map.lua setting: ALTER_EGO_HP_MULTIPLIER",
+      "env_variable": "ALTER_EGO_HP_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "NM MP Multiplier",
+      "description": "Adjust max MP pool for NMs, regular mobs, players, and trusts/fellows. Acts as a multiplier, so default is 1. Valid range: 0.1 to 2.0",
+      "env_variable": "NM_MP_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "MOB MP Multiplier",
+      "description": "LandSandBoat map.lua setting: MOB_MP_MULTIPLIER",
+      "env_variable": "MOB_MP_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "Alter Ego MP Multiplier",
+      "description": "LandSandBoat map.lua setting: ALTER_EGO_MP_MULTIPLIER",
+      "env_variable": "ALTER_EGO_MP_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "SJ MP Divisor",
+      "description": "Sets the fraction of MP a subjob provides to the main job. Retail is half and this acts as a divisor so default is 2",
+      "env_variable": "SJ_MP_DIVISOR",
+      "default_value": "2.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "Subjob Ratio",
+      "description": "0 = no subjobs 1 = 1/2 (default, 75/37, 99/49) 2 = 2/3 (75/50, 99/66) 3 = equal (75/75, 99/99)",
+      "env_variable": "SUBJOB_RATIO",
+      "default_value": "1",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "Include MOB SJ",
+      "description": "Also adjust monsters subjob in ratio adjustments? 1 = true / 0 = false",
+      "env_variable": "INCLUDE_MOB_SJ",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "NM Stat Multiplier",
+      "description": "Adjust base stats (str/vit/etc.) for NMs, regular mobs, players, and trusts/fellows. Acts as a multiplier, so default is 1.0. Valid range: 0.1 to 2.0",
+      "env_variable": "NM_STAT_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "MOB Stat Multiplier",
+      "description": "LandSandBoat map.lua setting: MOB_STAT_MULTIPLIER",
+      "env_variable": "MOB_STAT_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "Alter Ego Stat Multiplier",
+      "description": "LandSandBoat map.lua setting: ALTER_EGO_STAT_MULTIPLIER",
+      "env_variable": "ALTER_EGO_STAT_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "Alter Ego Skill Multiplier",
+      "description": "Adjust skill caps for trusts/fellows. Acts as a multiplier, so default is 1.",
+      "env_variable": "ALTER_EGO_SKILL_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "Ability Recast Multiplier",
+      "description": "Adjust the recast time for abilities. Acts as a multiplier, so default is 1",
+      "env_variable": "ABILITY_RECAST_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "Spell Recast Reduction Cap",
+      "description": "Maximum spell recast reduction percentage. Current retail is 80. Older eras used 50.",
+      "env_variable": "SPELL_RECAST_REDUCTION_CAP",
+      "default_value": "80",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "Blood Pact Shared Timer",
+      "description": "Enable/disable shared blood pact timer",
+      "env_variable": "BLOOD_PACT_SHARED_TIMER",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Drop Rate Multiplier",
+      "description": "Adjust mob drop rate. Acts as a multiplier, so default is 1.",
+      "env_variable": "DROP_RATE_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "MOB Gil Multiplier",
+      "description": "Multiplier for gil naturally dropped by mobs. Does not apply to the bonus gil from all_mobs_gil_bonus. Default is 1.0.",
+      "env_variable": "MOB_GIL_MULTIPLIER",
+      "default_value": "1.0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|numeric",
+      "field_type": "text"
+    },
+    {
+      "name": "All Mobs Gil Bonus",
+      "description": "All mobs drop this much extra gil per mob LV even if they normally drop zero.",
+      "env_variable": "ALL_MOBS_GIL_BONUS",
+      "default_value": "0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "Max Gil Bonus",
+      "description": "Maximum total bonus gil that can be dropped. Default 9999 gil.",
+      "env_variable": "MAX_GIL_BONUS",
+      "default_value": "9999",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "MOB No Despawn",
+      "description": "Allow mobs to walk back home instead of despawning",
+      "env_variable": "MOB_NO_DESPAWN",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "MOB Additional Time To Deaggro",
+      "description": "Adds extra time to mob despawn in seconds. Base time is 25s, so a setting of 5 here would be a total of 30 seconds.",
+      "env_variable": "MOB_ADDITIONAL_TIME_TO_DEAGGRO",
+      "default_value": "0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "Defensive Old Skillup Style",
+      "description": "Allows parry, block, and guard to skill up regardless of the action occuring. This did not happen in previous eras",
+      "env_variable": "DEFENSIVE_OLD_SKILLUP_STYLE",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Battle Cap Tweak",
+      "description": "Globally adjusts ALL battlefield level caps by this many levels.",
+      "env_variable": "BATTLE_CAP_TWEAK",
+      "default_value": "0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "LV Cap Mission BCNM",
+      "description": "Enable/disable level cap of mission battlefields stored in database.",
+      "env_variable": "LV_CAP_MISSION_BCNM",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "BCNM Enable Experimental",
+      "description": "Allow players to enter BCNMs which are flagged as experimental",
+      "env_variable": "BCNM_ENABLE_EXPERIMENTAL",
+      "default_value": "true",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Max Merit Points",
+      "description": "Max allowed merits points players can hold 10 classic 30 abyssea",
+      "env_variable": "MAX_MERIT_POINTS",
+      "default_value": "30",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "Yell Cooldown",
+      "description": "Minimum time between uses of yell command (in seconds).",
+      "env_variable": "YELL_COOLDOWN",
+      "default_value": "30",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "Block Tell To Hidden GM",
+      "description": "Prevent players from sending tells to hidden GMs. You will still receive them from other GMs.",
+      "env_variable": "BLOCK_TELL_TO_HIDDEN_GM",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Prevent Unengaged WS",
+      "description": "Prevent players from performing WS while unengaged using packet injection.",
+      "env_variable": "PREVENT_UNENGAGED_WS",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Hide Readies Target",
+      "description": "Don't leak the target of non PCs readying items/casting spells/using mobskills. Essentially, server side kills the info the targetlines addon uses. This will also make battlemod/simplelog show self target on spells",
+      "env_variable": "HIDE_READIES_TARGET",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Audit GM Cmd",
+      "description": "Command Audit [logging] commands with lower permission than this will not be logged. Zero for no logging at all. Commands given to non GMs are not logged.",
+      "env_variable": "AUDIT_GM_CMD",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Audit Chat",
+      "description": "Todo = other logging including anti-cheat messages Chat Audit[logging] settings",
+      "env_variable": "AUDIT_CHAT",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Audit Say",
+      "description": "LandSandBoat map.lua setting: AUDIT_SAY",
+      "env_variable": "AUDIT_SAY",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Audit Shout",
+      "description": "LandSandBoat map.lua setting: AUDIT_SHOUT",
+      "env_variable": "AUDIT_SHOUT",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Audit Tell",
+      "description": "LandSandBoat map.lua setting: AUDIT_TELL",
+      "env_variable": "AUDIT_TELL",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Audit Yell",
+      "description": "LandSandBoat map.lua setting: AUDIT_YELL",
+      "env_variable": "AUDIT_YELL",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Audit Linkshell",
+      "description": "LandSandBoat map.lua setting: AUDIT_LINKSHELL",
+      "env_variable": "AUDIT_LINKSHELL",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Audit Unity",
+      "description": "LandSandBoat map.lua setting: AUDIT_UNITY",
+      "env_variable": "AUDIT_UNITY",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Audit Party",
+      "description": "LandSandBoat map.lua setting: AUDIT_PARTY",
+      "env_variable": "AUDIT_PARTY",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Audit Ballista",
+      "description": "LandSandBoat map.lua setting: AUDIT_BALLISTA",
+      "env_variable": "AUDIT_BALLISTA",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Audit Assiste",
+      "description": "LandSandBoat map.lua setting: AUDIT_ASSISTE",
+      "env_variable": "AUDIT_ASSISTE",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Audit Assistj",
+      "description": "LandSandBoat map.lua setting: AUDIT_ASSISTJ",
+      "env_variable": "AUDIT_ASSISTJ",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Audit Player Trades",
+      "description": "Player Item Transaction Logging (Default: Off) Logs player item transactions to the database for persistence.",
+      "env_variable": "AUDIT_PLAYER_TRADES",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Audit Player Bazaar",
+      "description": "LandSandBoat map.lua setting: AUDIT_PLAYER_BAZAAR",
+      "env_variable": "AUDIT_PLAYER_BAZAAR",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Audit Player Dbox",
+      "description": "LandSandBoat map.lua setting: AUDIT_PLAYER_DBOX",
+      "env_variable": "AUDIT_PLAYER_DBOX",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Audit Player Vendor",
+      "description": "LandSandBoat map.lua setting: AUDIT_PLAYER_VENDOR",
+      "env_variable": "AUDIT_PLAYER_VENDOR",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Delivery Box Max Inflight",
+      "description": "Maximum number of in-flight items (slots) allowed in a player's delivery box for PC-to-PC transfers.",
+      "env_variable": "DELIVERY_BOX_MAX_INFLIGHT",
+      "default_value": "128",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "Healing Tick Delay",
+      "description": "Seconds between healing ticks. Default is 10",
+      "env_variable": "HEALING_TICK_DELAY",
+      "default_value": "10",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
+      "field_type": "text"
+    },
+    {
+      "name": "Keep Jugpet Through Zoning",
+      "description": "Enable/disable keeping jug pets through zoning",
+      "env_variable": "KEEP_JUGPET_THROUGH_ZONING",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Despawn Jugpets Below Minimum Level",
+      "description": "Despawn jug pets that have a minimum level below level sync or zone level restriction. Such as despawning Courier Carrie in a level 20 cap when their minimum level to summon is 23. While the default value of false is retail accurate, the...",
+      "env_variable": "DESPAWN_JUGPETS_BELOW_MINIMUM_LEVEL",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|in:true,false",
+      "field_type": "text"
+    },
+    {
+      "name": "Report Lua Errors To Player Level",
+      "description": "Send stack traces to the client after caught Lua errors if their GM level is the same or higher than this number. The max GM level is 5, so setting this to 6 disables it for everone. Setting it to 0 enables for everyone.",
+      "env_variable": "REPORT_LUA_ERRORS_TO_PLAYER_LEVEL",
+      "default_value": "6",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer",
       "field_type": "text"
     }
   ]
